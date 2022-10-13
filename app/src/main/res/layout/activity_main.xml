@@ -89,6 +89,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
+        android:id="@+id/graphButton"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:text="@string/graph"

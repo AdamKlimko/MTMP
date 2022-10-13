@@ -10,12 +10,12 @@ class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
         val xArray = intent.getSerializableExtra("xArray") as ArrayList<*>
         val yArray = intent.getSerializableExtra("yArray") as ArrayList<*>
-        val timeArray = intent.getSerializableExtra("timeArray") as ArrayList<*>
+        val timeArray = intent.getSerializableExtra("tArray") as ArrayList<*>
 
         val listView = findViewById<ListView>(R.id.listView)
-
         val listItems = arrayOfNulls<String>(xArray.size)
 
         for (i in 0 until xArray.size) {
@@ -25,17 +25,11 @@ class ListActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         listView.adapter = adapter
-
     }
 
     private fun createRowString(x: Any, y: Any, t: Any): String {
         return "x: ${String.format("%.2f", x)}, " +
                 "y: ${String.format("%.2f", y)}, " +
                 "t: ${String.format("%.2f", t)}"
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
     }
 }

@@ -11,11 +11,9 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     var angle: Double = 0.0
     var velocity: Double = 0.0
-    val g: Double = 9.80665
 
-    val xArray = arrayListOf<Double>()
-    val yArray = arrayListOf<Double>()
-    val timeArray = arrayListOf<Double>()
+    lateinit var calculationData: CalculationData
+    var isResult = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,47 +45,43 @@ class MainActivity : AppCompatActivity() {
         )
 
         findViewById<Button>(R.id.calculateBtn).setOnClickListener {
-            calculate()
+            calculationData = Calculation(angle, velocity).calculate()
+            isResult = true
             Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
         }
 
         findViewById<Button>(R.id.listButton).setOnClickListener {
             listResults()
         }
-    }
 
-    private fun calculate() {
-        var x = 0.0
-        var y = 0.0
-        var time = 0.0
-
-        while (true) {
-            if (y < 0) {
-                break
-            }
-
-            xArray.add(x)
-            yArray.add(y)
-            timeArray.add(time)
-            x = calculateX(x, velocity, time, angle)
-            y = calculateY(y, velocity, time, angle)
-            time += 0.1
+        findViewById<Button>(R.id.graphButton).setOnClickListener {
+            showChart()
         }
     }
 
-    private fun calculateX(x: Double, v: Double, t: Double, a: Double): Double {
-        return x + (v * t * kotlin.math.cos(Math.toRadians(a)))
-    }
-
-    private fun calculateY(y: Double, v: Double, t: Double, a: Double): Double {
-        return y + (v * t * kotlin.math.sin(Math.toRadians(a))) - (0.5 * g * t * t)
-    }
-
     private fun listResults() {
-        val intent = Intent(this, ListActivity::class.java)
-        intent.putExtra("xArray", this.xArray)
-        intent.putExtra("yArray", this.yArray)
-        intent.putExtra("timeArray", this.timeArray)
-        startActivity(intent)
+        if(isResult) {
+            val intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("xArray", this.calculationData.xArray)
+            intent.putExtra("yArray", this.calculationData.yArray)
+            intent.putExtra("tArray", this.calculationData.tArray)
+            startActivity(intent)
+
+        }
+        else {
+            Toast.makeText(applicationContext,"Throw not yet calculated!",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showChart() {
+        if(isResult) {
+            val intent = Intent(this, ChartActivity::class.java)
+            intent.putExtra("yArray", this.calculationData.yArray)
+            intent.putExtra("tArray", this.calculationData.tArray)
+            startActivity(intent)
+        }
+        else {
+            Toast.makeText(applicationContext,"Throw not yet calculated!",Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mtmp_cv2</string>
+    <string name="app_name">mtmp</string>
     <string name="angleValue">0°</string>
     <string name="velocityValue">0m/s</string>
     <string name="calculate">calculate</string>
