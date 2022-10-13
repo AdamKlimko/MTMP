@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">mtmp_cv2</string>
-    <string name="xValue">0</string>
-    <string name="yValue">0</string>
+    <string name="angleValue">0°</string>
+    <string name="velocityValue">0m/s</string>
     <string name="calculate">calculate</string>
     <string name="showList">List results</string>
     <string name="title_activity_list">ListActivity</string>
-    <string name="angle">Uhol</string>
-    <string name="velocity">Rychlost</string>
-
+    <string name="angle">Angle</string>
+    <string name="velocity">Velocity</string>
+    <string name="graph">Graph</string>
 </resources>

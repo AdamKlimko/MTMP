@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
-import kotlin.math.sqrt
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     var angle: Double = 0.0
@@ -21,13 +21,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView1= findViewById<TextView>(R.id.textView)
-        val textView2= findViewById<TextView>(R.id.textView2)
+        val angleValTextView= findViewById<TextView>(R.id.angleValTextView)
+        val velocityValTextView= findViewById<TextView>(R.id.velocityValTextView)
 
         findViewById<SeekBar>(R.id.seekBar).setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
-                    textView1.text = progress.toString()
+                    angleValTextView.text = "$progress°"
                     angle = progress.toDouble()
                 }
                 override fun onStartTrackingTouch(p0: SeekBar?) { }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<SeekBar>(R.id.seekBar2).setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
-                    textView2.text = progress.toString()
+                    velocityValTextView.text = "${progress}m/s"
                     velocity = progress.toDouble()
                 }
                 override fun onStartTrackingTouch(p0: SeekBar?) { }
@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.calculateBtn).setOnClickListener {
             calculate()
+            Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
         }
 
         findViewById<Button>(R.id.listButton).setOnClickListener {

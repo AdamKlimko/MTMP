@@ -33,4 +33,9 @@ class ListActivity : AppCompatActivity() {
                 "y: ${String.format("%.2f", y)}, " +
                 "t: ${String.format("%.2f", t)}"
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }
