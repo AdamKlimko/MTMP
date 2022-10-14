@@ -26,8 +26,6 @@ class ChartActivity : AppCompatActivity() {
             lineList.add(Entry(xArray[i], yArray[i]))
         }
 
-//        lineDataSet.setColor(R.color.purple_700)
-//        lineDataSet.lineWidth = 1f
         lineDataSet = LineDataSet(lineList, "Y coordinate")
         lineData = LineData(lineDataSet)
         findViewById<LineChart>(R.id.line_chart).data = lineData
