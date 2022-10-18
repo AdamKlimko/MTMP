@@ -44,19 +44,10 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        findViewById<Button>(R.id.calculateBtn).setOnClickListener {
-            calculationData = Calculation(angle, velocity).calculate()
-            isResult = true
-            Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
-        }
-
-        findViewById<Button>(R.id.listButton).setOnClickListener {
-            listResults()
-        }
-
-        findViewById<Button>(R.id.graphButton).setOnClickListener {
-            showChart()
-        }
+        findViewById<Button>(R.id.calculateBtn).setOnClickListener { calculateLocal() }
+        findViewById<Button>(R.id.calculateServerBtn).setOnClickListener { calculateServer() }
+        findViewById<Button>(R.id.listButton).setOnClickListener { listResults() }
+        findViewById<Button>(R.id.graphButton).setOnClickListener { showChart() }
     }
 
     private fun listResults() {
@@ -82,6 +73,30 @@ class MainActivity : AppCompatActivity() {
         }
         else {
             Toast.makeText(applicationContext,"Throw not yet calculated!",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun calculateLocal() {
+        calculationData = Calculation(angle, velocity).calculate()
+        isResult = true
+        Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
+    }
+
+    private fun calculateServer() {
+
+        val calculationService = CalculationService()
+        val calculationRequest = CalculationRequest(angle, velocity)
+
+        calculationService.fetchCalculation(calculationRequest) {
+            if (it != null) {
+                isResult = true
+                calculationData = CalculationData(it.xArray, it.tArray, it.tArray)
+                Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
+
+            } else {
+                isResult = false
+                Toast.makeText(applicationContext,"Request error",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

@@ -8,4 +8,5 @@
     <string name="angle">Angle</string>
     <string name="velocity">Velocity</string>
     <string name="graph">Graph</string>
+    <string name="calculate_on_server">Calculate on server</string>
 </resources>
