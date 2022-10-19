@@ -17,6 +17,7 @@ class CalculationService {
 
                 }
                 override fun onResponse( call: Call<CalculationData>, response: Response<CalculationData>) {
+                    Log.i("info", response.toString())
                     val calculationData = response.body()
                     onResult(calculationData)
                 }

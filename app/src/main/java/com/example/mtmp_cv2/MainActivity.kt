@@ -3,10 +3,12 @@ package com.example.mtmp_cv2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     var angle: Double = 0.0
@@ -90,7 +92,9 @@ class MainActivity : AppCompatActivity() {
         calculationService.fetchCalculation(calculationRequest) {
             if (it != null) {
                 isResult = true
-                calculationData = CalculationData(it.xArray, it.tArray, it.tArray)
+                Log.i("info", it.toString())
+                calculationData = it
+                Log.i("info", calculationData.toString())
                 Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
 
             } else {
