@@ -1,12 +1,14 @@
 <resources>
-    <string name="app_name">mtmp</string>
+    <string name="app_name">MTMP</string>
     <string name="angleValue">0°</string>
     <string name="velocityValue">0m/s</string>
-    <string name="calculate">calculate</string>
+    <string name="calculateLocal">Calculate locally</string>
+    <string name="calculate_on_server">Calculate on server</string>
+
     <string name="showList">List results</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="angle">Angle</string>
     <string name="velocity">Velocity</string>
     <string name="graph">Graph</string>
-    <string name="calculate_on_server">Calculate on server</string>
+    <string name="animation">Animation</string>
 </resources>

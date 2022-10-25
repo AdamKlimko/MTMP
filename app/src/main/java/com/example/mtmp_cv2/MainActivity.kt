@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.calculateServerBtn).setOnClickListener { calculateServer() }
         findViewById<Button>(R.id.listButton).setOnClickListener { listResults() }
         findViewById<Button>(R.id.graphButton).setOnClickListener { showChart() }
+        findViewById<Button>(R.id.animationButton).setOnClickListener { showAnimation() }
+
     }
 
     private fun listResults() {
@@ -78,10 +80,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showAnimation() {
+        if(isResult) {
+            val intent = Intent(this, AnimationActivity::class.java)
+            intent.putExtra("yArray", this.calculationData.yArray)
+            intent.putExtra("yArray", this.calculationData.yArray)
+            intent.putExtra("tArray", this.calculationData.tArray)
+            startActivity(intent)
+        }
+        else {
+            Toast.makeText(applicationContext,"Throw not yet calculated!",Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun calculateLocal() {
         calculationData = Calculation(angle, velocity).calculate()
         isResult = true
-        Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext,"Throw calculated locally",Toast.LENGTH_SHORT).show()
     }
 
     private fun calculateServer() {
@@ -92,10 +107,8 @@ class MainActivity : AppCompatActivity() {
         calculationService.fetchCalculation(calculationRequest) {
             if (it != null) {
                 isResult = true
-                Log.i("info", it.toString())
                 calculationData = it
-                Log.i("info", calculationData.toString())
-                Toast.makeText(applicationContext,"Throw calculated",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Throw calculated via server",Toast.LENGTH_SHORT).show()
 
             } else {
                 isResult = false

@@ -11,6 +11,13 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.apply {
+            title = "List of coordinates"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
         val xArray = intent.getSerializableExtra("xArray") as ArrayList<*>
         val yArray = intent.getSerializableExtra("yArray") as ArrayList<*>
         val timeArray = intent.getSerializableExtra("tArray") as ArrayList<*>
@@ -31,5 +38,10 @@ class ListActivity : AppCompatActivity() {
         return "x: ${String.format("%.2f", x)}, " +
                 "y: ${String.format("%.2f", y)}, " +
                 "t: ${String.format("%.2f", t)}"
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
