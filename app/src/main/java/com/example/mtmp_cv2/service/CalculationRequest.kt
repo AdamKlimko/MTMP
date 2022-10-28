@@ -1,4 +1,4 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.service
 
 class CalculationRequest(
     val angle: Double,

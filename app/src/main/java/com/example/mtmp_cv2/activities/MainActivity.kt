@@ -1,4 +1,4 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,11 @@ import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
+import com.example.mtmp_cv2.*
+import com.example.mtmp_cv2.model.CalculationData
+import com.example.mtmp_cv2.service.CalculationRequest
+import com.example.mtmp_cv2.service.CalculationService
+import com.example.mtmp_cv2.util.CalculationUtil
 
 class MainActivity : AppCompatActivity() {
     var angle: Double = 0.0

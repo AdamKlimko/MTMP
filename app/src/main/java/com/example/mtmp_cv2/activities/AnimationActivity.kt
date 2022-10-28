@@ -1,13 +1,16 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.activities
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.graphics.Path
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mtmp_cv2.R
+import java.security.AccessController.getContext
 
 
 class AnimationActivity : AppCompatActivity() {
@@ -27,6 +30,7 @@ class AnimationActivity : AppCompatActivity() {
         val ballImageView = findViewById<ImageView>(R.id.ball)
         mainLayout = findViewById(R.id.main_layout)
 
+        setPositionGround()
         animate(ballImageView)
     }
 
@@ -60,5 +64,17 @@ class AnimationActivity : AppCompatActivity() {
             path.lineTo(x + xArray[i].toString().toFloat(), y - yArray[i].toString().toFloat())
         }
         return path
+    }
+
+    private fun setPositionGround() {
+        val view = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_animation)
+
+        val path = Path()
+        path.moveTo(0f, 1855f)
+
+        ObjectAnimator.ofFloat(
+            view, View.X,
+            View.Y, path,
+        ).start()
     }
 }

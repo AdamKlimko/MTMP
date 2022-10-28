@@ -1,5 +1,6 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.service
 
+import com.example.mtmp_cv2.model.CalculationData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers

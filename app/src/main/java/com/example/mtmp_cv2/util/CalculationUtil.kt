@@ -1,4 +1,6 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.util
+
+import com.example.mtmp_cv2.model.CalculationData
 
 class CalculationUtil(
     var angle: Double,

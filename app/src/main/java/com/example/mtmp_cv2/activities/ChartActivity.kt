@@ -1,7 +1,8 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mtmp_cv2.R
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.*
 

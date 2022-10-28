@@ -1,4 +1,4 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.model
 
 import com.google.gson.annotations.SerializedName
 

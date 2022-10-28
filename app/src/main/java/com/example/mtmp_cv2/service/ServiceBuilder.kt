@@ -1,4 +1,4 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.service
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

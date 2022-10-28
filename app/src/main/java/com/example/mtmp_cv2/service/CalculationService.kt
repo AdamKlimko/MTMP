@@ -1,6 +1,7 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.service
 
 import android.util.Log
+import com.example.mtmp_cv2.model.CalculationData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,7 +17,7 @@ class CalculationService {
                     Log.e("error", t.message.toString())
 
                 }
-                override fun onResponse( call: Call<CalculationData>, response: Response<CalculationData>) {
+                override fun onResponse(call: Call<CalculationData>, response: Response<CalculationData>) {
                     Log.i("info", response.toString())
                     val calculationData = response.body()
                     onResult(calculationData)

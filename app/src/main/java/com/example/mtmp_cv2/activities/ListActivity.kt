@@ -1,9 +1,10 @@
-package com.example.mtmp_cv2
+package com.example.mtmp_cv2.activities
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mtmp_cv2.R
 
 
 class ListActivity : AppCompatActivity() {
