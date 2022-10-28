@@ -1,6 +1,6 @@
 package com.example.mtmp_cv2
 
-class Calculation(
+class CalculationUtil(
     var angle: Double,
     var velocity: Double
 ) {

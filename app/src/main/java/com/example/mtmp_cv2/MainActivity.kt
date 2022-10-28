@@ -3,12 +3,10 @@ package com.example.mtmp_cv2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
-import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     var angle: Double = 0.0
@@ -24,12 +22,14 @@ class MainActivity : AppCompatActivity() {
         val angleValTextView= findViewById<TextView>(R.id.angleValTextView)
         val velocityValTextView= findViewById<TextView>(R.id.velocityValTextView)
 
-        findViewById<SeekBar>(R.id.seekBar).setOnSeekBarChangeListener(
+        val seekBar = findViewById<SeekBar>(R.id.seekBar)
+        seekBar.max = 90
+        seekBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
-                    angleValTextView.text = "$progress°"
-                    angle = progress.toDouble()
-                }
+                override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
+                        angleValTextView.text = "$progress°"
+                        angle = progress.toDouble()
+                    }
                 override fun onStartTrackingTouch(p0: SeekBar?) { }
                 override fun onStopTrackingTouch(p0: SeekBar?) { }
             }
@@ -57,9 +57,9 @@ class MainActivity : AppCompatActivity() {
     private fun listResults() {
         if(isResult) {
             val intent = Intent(this, ListActivity::class.java)
-            intent.putExtra("xArray", this.calculationData.xArray)
-            intent.putExtra("yArray", this.calculationData.yArray)
-            intent.putExtra("tArray", this.calculationData.tArray)
+            intent.putExtra("xArray", calculationData.xArray)
+            intent.putExtra("yArray", calculationData.yArray)
+            intent.putExtra("tArray", calculationData.tArray)
             startActivity(intent)
 
         }
@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
     private fun showChart() {
         if(isResult) {
             val intent = Intent(this, ChartActivity::class.java)
-            intent.putExtra("yArray", this.calculationData.yArray)
-            intent.putExtra("tArray", this.calculationData.tArray)
+            intent.putExtra("yArray", calculationData.yArray)
+            intent.putExtra("tArray", calculationData.tArray)
             startActivity(intent)
         }
         else {
@@ -83,9 +83,9 @@ class MainActivity : AppCompatActivity() {
     private fun showAnimation() {
         if(isResult) {
             val intent = Intent(this, AnimationActivity::class.java)
-            intent.putExtra("yArray", this.calculationData.yArray)
-            intent.putExtra("yArray", this.calculationData.yArray)
-            intent.putExtra("tArray", this.calculationData.tArray)
+            intent.putExtra("xArray", calculationData.xArray)
+            intent.putExtra("yArray", calculationData.yArray)
+            intent.putExtra("duration", calculationData.tArray[calculationData.tArray.size - 1])
             startActivity(intent)
         }
         else {
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateLocal() {
-        calculationData = Calculation(angle, velocity).calculate()
+        calculationData = CalculationUtil(angle, velocity).calculate()
         isResult = true
         Toast.makeText(applicationContext,"Throw calculated locally",Toast.LENGTH_SHORT).show()
     }

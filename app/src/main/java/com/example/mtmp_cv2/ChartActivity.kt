@@ -26,8 +26,9 @@ class ChartActivity : AppCompatActivity() {
             lineList.add(Entry(xArray[i], yArray[i]))
         }
 
-        lineDataSet = LineDataSet(lineList, "Y coordinate")
+        lineDataSet = LineDataSet(lineList, "Flying object")
         lineData = LineData(lineDataSet)
-        findViewById<LineChart>(R.id.line_chart).data = lineData
+        val lineChart = findViewById<LineChart>(R.id.line_chart)
+        lineChart.data = lineData
     }
 }

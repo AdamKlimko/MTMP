@@ -10,5 +10,6 @@
     <string name="angle">Angle</string>
     <string name="velocity">Velocity</string>
     <string name="graph">Graph</string>
+    <string name="graphDescription">| X axis: time(s) | Y axis: height(m) |</string>
     <string name="animation">Animation</string>
 </resources>
